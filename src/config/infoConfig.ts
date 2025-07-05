@@ -4,9 +4,13 @@ export * from './career'
 
 // personal info
 export const name = 'Star_t 枫蜜123'
-export const headline = 'ACMer from XDU'
-export const introduction =
-  "Welcome to my blog. My name is Cassiel Li."
+export const headline = 'Welcome to my blog - Cassiel Li.'
+export const introduction = [
+  "—— Where the heart yearns, there lies light.  ",
+  "—— As long as starlights glimmers, hope shall take flight. ",
+  "—— Though dawn has yet to break, our steps march on. ",
+  "—— What's past is prologue - a new day has begun. "
+]
 export const email = '1739138545@qq.com'
 export const githubUsername = 'Fengmi-123'
 
@@ -19,9 +23,9 @@ export const aboutParagraphs = [
 ]
 
 // blog
-export const blogHeadLine = "What I've thinking about."
+export const blogHeadLine = "What I've thinking and learning about."
 export const blogIntro =
-  "I've written something about AI, programming and life."
+  "I've written something about AI, algorithm, programming and life."
 
 // social links
 export type SocialLinkType = {
@@ -33,14 +37,14 @@ export type SocialLinkType = {
 
 export const socialLinks: Array<SocialLinkType> = [
   {
-    name: 'Tiktok',
-    icon: 'tiktok',
-    href: 'https://www.tiktok.com/@harvard?lang=en',
-  },
-  {
     name: 'Bilibili',
     icon: 'bilibili',
-    href: 'https://space.bilibili.com/349721082',
+    href: 'https://space.bilibili.com/335106017',
+  },
+  {
+    name: 'github',
+    icon: 'github',
+    href: 'https://github.com/Fengmi-123',
   },
 ]
 
