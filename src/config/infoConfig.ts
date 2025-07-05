@@ -17,9 +17,8 @@ export const githubUsername = 'Fengmi-123'
 // about page
 export const aboutMeHeadline = 'Who Are You and Why Should I Care?'
 export const aboutParagraphs = [
-  "Coucou Les Amis! My name is Derek Hu. I'm from Hubei and an alumnus of BUPT, UChicago, and Tsinghua. I’ve been teaching Computer Science at SCLS since 2020.",
-  'Currently I am working on a new course called AI Camp, an innovative course where high school students create real-world products and startups while exploring the frontiers of AI.',
-  "I started this blog to share the insights I learn every day. Most blogs focus on education in Artificial Intelligence and general computer science, while others share the life lessons I've learned.",
+  "心之所向，便是光明",
+  "星光未灭，希望永存"
 ]
 
 // blog
