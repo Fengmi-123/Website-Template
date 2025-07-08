@@ -9,13 +9,19 @@ export type BlogType = {
   author: string
   date: string
   slug: string
+  category: string
 }
 
+export type BlogListType = {
+  [category: string]: BlogType[];
+};
+
 async function importBlog(
-  blogFilename: string,
+  filePath: string,
 ): Promise<BlogType> {
+  const [category,blogFilename] = filePath.split('/');
   const source = await fs.readFile(
-    path.join(process.cwd(), 'src/content/blog', blogFilename),
+    path.join(process.cwd(), 'src/content/blog', filePath),
     'utf-8'
   )
   
@@ -25,21 +31,26 @@ async function importBlog(
   return {
     slug: blogFilename.replace(/\.mdx$/, ''),
     ...data,
+    category,
   }
 }
 
-export async function getAllBlogs() {
-  let blogFileNames = await glob('*.mdx', {
+export async function getAllBlogs(): Promise<BlogListType> {
+  const blogFilePaths = await glob('**/*.mdx', {
     cwd: './src/content/blog',
-  })
+  });
+  const blogs = await Promise.all(blogFilePaths.map(importBlog));
 
-  let blogs = await Promise.all(blogFileNames.map(importBlog))
-
-  return blogs.sort((a, z) => {
-    const aDate = a.date ? +new Date(a.date) : 0;
-    const zDate = z.date ? +new Date(z.date) : 0;
-    return zDate - aDate;
-  })
+  return blogs.reduce<BlogListType>((acc, blog) => {
+      if (!acc[blog.category]) {
+        acc[blog.category] = [];
+      }
+      acc[blog.category].push(blog);
+      acc[blog.category].sort((a, z) => 
+        new Date(z.date).getTime() - new Date(a.date).getTime()
+      );
+    return acc;
+  }, {});
 }
 
 export async function getBlogBySlug(slug: string): Promise<BlogType | null> {

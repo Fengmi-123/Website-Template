@@ -14,7 +14,9 @@ import IconCloud from "@/components/ui/icon-cloud"
 import { Award, Briefcase, Heart } from 'lucide-react'
 
 export default async function Home() {
-  let blogList = (await getAllBlogs()).slice(0, 4)
+  const categorizedBlogs = await getAllBlogs();
+  const allBlogsFlat = Object.values(categorizedBlogs).flat();
+  let blogList = allBlogsFlat.slice(0, 4);
 
   return (
     <>

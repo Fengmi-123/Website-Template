@@ -44,7 +44,7 @@ export const metadata: Metadata = {
 }
 
 export default async function BlogsIndex() {
-  let blogs = await getAllBlogs()
+  let blogs = await getAllBlogs();
 
   return (
     <SimpleLayout
@@ -52,12 +52,17 @@ export default async function BlogsIndex() {
       intro={blogIntro}
     >
       <div className="md:border-l md:border-zinc-100 md:pl-6 md:dark:border-zinc-700/40">
-        <div className="flex max-w-3xl flex-col space-y-16">
-          {blogs.map((blog: BlogType) => (
+      {Object.entries(blogs).map(([category, blogList]) => (
+        <div key={category} className="flex max-w-3xl flex-col space-y-16">
+          <h2 className="text-2xl font-bold tracking-tight text-zinc-800 dark:text-zinc-100">
+            {category}
+          </h2>
+          {blogList.map((blog: BlogType) => (
             <Blog key={blog.slug} blog={blog} />
           ))}
         </div>
-      </div>
-    </SimpleLayout>
+      ))}
+    </div>
+  </SimpleLayout>
   )
 }
